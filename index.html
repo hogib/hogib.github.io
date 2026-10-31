@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="H. Oğuz Bolat: low-level code for seismic and geodetic data.">
+<title>Oğuz Bolat</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: one plain monospace column, read like a man page. Section names flush left, body indented. */
+:root{ color-scheme:light;
+  --bg:#fbfbf8; --fg:#1b1d1c; --dim:#6a6f6b; --rule:#dcded9; --link:#1f5aa6; --mark:#9b3d1c;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111312; --fg:#d6d9d4; --dim:#858b86; --rule:#272b29; --link:#7fb0ec; --mark:#e08a63; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111312; --fg:#d6d9d4; --dim:#858b86; --rule:#272b29; --link:#7fb0ec; --mark:#e08a63; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--mono);font-size:15px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:76ch;margin:0 auto;padding-block:40px 64px}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible{outline:1px dashed var(--link);outline-offset:2px}
+::selection{background:var(--fg);color:var(--bg)}
+
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--dim);font-size:13px;border-bottom:1px solid var(--rule);padding-bottom:6px}
+h1{font-size:15px;font-weight:600;margin:28px 0 0}
+.sub{color:var(--dim);margin:0}
+
+h2{font-size:15px;font-weight:600;margin:32px 0 8px;letter-spacing:.04em}
+.ind{padding-left:4ch}
+.ind > *{margin:0 0 10px}
+p{max-width:68ch}
+
+dl{margin:0;display:grid;gap:14px}
+dt{font-weight:600}
+dt .meta{font-weight:400;color:var(--dim)}
+dd{margin:2px 0 0 4ch}
+.lang{color:var(--mark)}
+.num{font-variant-numeric:tabular-nums}
+
+ul{margin:0;padding:0;list-style:none}
+ul li{padding-left:2ch;text-indent:-2ch}
+ul li::before{content:"- ";color:var(--dim)}
+
+table{border-collapse:collapse;font-size:14px}
+td{padding:1px 2ch 1px 0;vertical-align:top}
+td:first-child{color:var(--dim);white-space:nowrap}
+.tbl{overflow-x:auto}
+
+.cmd::before{content:"$ ";color:var(--dim)}
+footer{margin-top:40px;border-top:1px solid var(--rule);padding-top:6px;color:var(--dim);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+@media (max-width:520px){ body{font-size:14px} .ind{padding-left:2ch} dd{margin-left:2ch} }
+</style>
+</head>
+<body>
+<main>
+  <div class="top"><span>BOLAT(1)</span><span>User Commands</span><span>BOLAT(1)</span></div>
+
+  <h1>H. Oğuz Bolat</h1>
+  <p class="sub">geomatics engineering undergrad · yıldız technical university · istanbul</p>
+
+  <h2>NAME</h2>
+  <div class="ind">
+    <p>hogib — writes low-level code for seismic and geodetic data. Likes C, hand-rolled neural nets, and computers.</p>
+  </div>
+
+  <h2>DESCRIPTION</h2>
+  <div class="ind">
+    <p>I work on earthquake detection and GNSS time series, mostly from the systems side: data pipelines, inference without ML runtimes, SIMD kernels on ARM boards. Interested in systems architecture, neural networks and computer vision.</p>
+  </div>
+
+  <h2>RESEARCH</h2>
+  <div class="ind">
+    <dl>
+      <div>
+        <dt>ayzek: real-time detection pipeline and operating-point replay protocol <span class="meta">[submitting, Computers &amp; Geosciences]</span></dt>
+        <dd>Detection on Turkish broadband stations, with a replay protocol for picking and checking the operating point on archived data.</dd>
+      </div>
+      <div>
+        <dt>Virtual GNSS stations from neighbours with a conditional diffusion model <span class="meta">[in progress]</span></dt>
+        <dd>Generating displacement series at a target site from surrounding stations. California and Türkiye.</dd>
+      </div>
+      <div>
+        <dt>Discussion of Kaushal et al. (2025), Soil Dyn. Earthq. Eng. <span class="meta">[sent to editors]</span></dt>
+        <dd>Co-authored critique of an RNN-LSTM earthquake prediction paper.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <h2>PROJECTS</h2>
+  <div class="ind">
+    <dl>
+      <div>
+        <dt><a href="https://github.com/hogib">ayzek</a> <span class="lang">C++23</span></dt>
+        <dd>Earthquake early warning on Raspberry Pi 4/5. CNN–BiLSTM–attention detector, multi-station event declaration, magnitude and location. Models written by hand with no ML library; AArch64 NEON kernels. Named after a budgie.</dd>
+      </div>
+      <div>
+        <dt>sismokaos-models <span class="lang">Python</span></dt>
+        <dd>Dual-channel (waveform + spectrogram) CNN/LSTM models for detection, magnitude, forecasting and ground motion on real waveform data.</dd>
+      </div>
+      <div>
+        <dt>sismokaos-cli <span class="lang">Rust</span></dt>
+        <dd>Preprocessing and feature extraction from miniSEED.</dd>
+      </div>
+      <div>
+        <dt>gnssdl <span class="lang">Python</span></dt>
+        <dd>GNSS time-series tooling; network filter benchmark across <span class="num">~1,250</span> stations.</dd>
+      </div>
+      <div>
+        <dt>geolab</dt>
+        <dd>Terminal geodesy calculator that shows its intermediate steps.</dd>
+      </div>
+      <div>
+        <dt><a href="https://github.com/hogib">electric-eye</a> <span class="lang">C</span></dt>
+        <dd>V4L2 real-time camera effects and recording daemon for an underwater ROV. All my computer vision work is called electric eye.</dd>
+      </div>
+      <div>
+        <dt><a href="https://github.com/hogib">cconv</a> <span class="lang">C</span></dt>
+        <dd>Image manipulation CLI.</dd>
+      </div>
+      <div>
+        <dt><a href="https://github.com/hogib">ssh-holdem</a> <span class="lang">Go</span></dt>
+        <dd>Multiplayer Texas Hold'em server you play over SSH.</dd>
+      </div>
+    </dl>
+  </div>
+
+  <h2>EXPERIENCE</h2>
+  <div class="ind">
+    <dl>
+      <div>
+        <dt>Research scholar, TÜBİTAK 1001 Sismokaos project <span class="meta">[YTU, 2026–]</span></dt>
+        <dd>
+          <ul>
+            <li>Pipelines for bulk download and preprocessing of continuous records from AFAD/TDVMS and KOERI into model-ready datasets; archive processing <span class="num">60×</span> faster.</li>
+            <li>CNN, LSTM and attention models for detection, magnitude and forecasting. Best detector: <span class="num">0.979</span> AUC on test vs <span class="num">0.819</span> for a properly tuned STA/LTA baseline.</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </div>
+
+  <h2>TOOLCHAIN</h2>
+  <div class="ind tbl">
+    <table>
+      <tr><td>lang</td><td>C, C++23, Rust, Go, Python</td></tr>
+      <tr><td>sys</td><td>Linux, Bash, Awk, Git, Meson/Ninja, uv, Raspberry Pi, ARM NEON, LaTeX</td></tr>
+      <tr><td>ml</td><td>PyTorch, TensorFlow, CNN, LSTM, Transformer, U-Net, LightGBM, scikit-learn</td></tr>
+      <tr><td>geo</td><td>ObsPy, FDSN/miniSEED, GNSS time series, QGIS, Sentinel-2</td></tr>
+      <tr><td>speaks</td><td>Turkish (native), English (B2)</td></tr>
+    </table>
+  </div>
+
+  <h2>SEE ALSO</h2>
+  <div class="ind">
+    <ul>
+      <li><a href="https://github.com/hogib">github.com/hogib</a></li>
+      <li><a href="https://www.linkedin.com/in/hogibolat/">linkedin.com/in/hogibolat</a></li>
+      <li>hoguzbolat@gmail.com</li>
+    </ul>
+  </div>
+
+  <footer><span>hogib</span><span>October 2026</span><span>BOLAT(1)</span></footer>
+</main>
+</body>
+</html>
